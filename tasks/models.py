@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
 
@@ -29,7 +30,7 @@ class Task(models.Model):
     state = models.CharField(max_length=3, choices=STATE_CHOICES, default='NEW')
     priority = models.CharField(max_length=2, choices=PRIORITY_CHOICES, default='LO')
     title = models.CharField(max_length=255, blank=True)
-    body = models.TextField()
+    body = models.TextField(blank=True)
     overdue = models.BooleanField(default=False)
     coowner = models.ManyToManyField(User, related_name='task_coowner', blank=True)
 
