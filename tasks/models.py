@@ -27,7 +27,7 @@ class Task(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    due_date = models.DateTimeField(auto_now=False, auto_now_add=False, null=True)
+    due_date = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     state = models.CharField(max_length=3, choices=STATE_CHOICES, default='NEW')
     priority = models.CharField(max_length=2, choices=PRIORITY_CHOICES, default='LO')
     title = models.CharField(max_length=255, blank=True)
@@ -39,4 +39,13 @@ class Task(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f'{self.id} {self.title}'
+        if self.category:
+            if self.title:
+                return f'{self.category} : {self.title}'
+            else:
+                return f'{self.category} : {self.body}'
+        else:
+            if self.title:
+                return f'(No Category) : {self.title}'
+            else:
+                return f'(No Category) : {self.body}'
