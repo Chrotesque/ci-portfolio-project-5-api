@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Task
 from .serializers import TaskSerializer
-from cip5_api.permissions import IsOwnerOrReadOnly
+from cip5_api.permissions import IsCoOwnerOrReadOnly
 
 
 class TaskList(APIView):
@@ -35,7 +35,7 @@ class TaskList(APIView):
 
 class TaskDetail(APIView):
     serializer_class = TaskSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsCoOwnerOrReadOnly]
 
     def get_object(self, pk):
         try:
