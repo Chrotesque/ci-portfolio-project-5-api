@@ -39,13 +39,6 @@ class Task(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        if self.category:
-            if self.title:
-                return f'{self.category} : {self.title}'
-            else:
-                return f'{self.category} : {self.body}'
-        else:
-            if self.title:
-                return f'(No Category) : {self.title}'
-            else:
-                return f'(No Category) : {self.body}'
+        task_cat = self.category if self.category else "No Category"
+        task_title = self.title if self.title else self.body
+        return f'({task_cat}): {task_title}'

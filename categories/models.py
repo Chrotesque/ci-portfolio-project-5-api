@@ -15,10 +15,4 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
     def __str__(self):
-        # no parent assigned
-        if not self.parent:
-            return f'{self.name}'
-        # parent has been assigned
-        else:
-            return f'{self.parent} > {self.name}'
-
+        return f'{self.parent} > {self.name}' if self.parent else f'{self.name}'
