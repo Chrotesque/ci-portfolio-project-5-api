@@ -1,61 +1,19 @@
-from rest_framework import status, permissions
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import generics, permissions
 from .models import Task
 from .serializers import TaskSerializer
 from cip5_api.permissions import IsCoOwnerOrReadOnly
 
 
-class TaskList(APIView):
+class TaskList(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = TaskSerializer
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
-    ]
+    queryset = Task.objects.all()
 
-    def get(self, request):
-        tasks = Task.objects.all()
-        serializer = TaskSerializer(
-            tasks, many=True, context={'request': request}
-        )
-        return Response(serializer.data)
-
-    def post(self, request):
-        serializer = TaskSerializer(
-            data=request.data, context={'request': request}
-        )
-        if serializer.is_valid():
-            serializer.save(owner=request.user)
-            return Response(
-                serializer.data, status=status.HTTP_201_CREATED
-                )
-        return Response(
-            serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
-class TaskDetail(APIView):
-    serializer_class = TaskSerializer
+class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsCoOwnerOrReadOnly]
-
-    def get_object(self, pk):
-        try:
-            task = Task.objects.get(pk=pk)
-            self.check_object_permissions(self.request, task)
-            return task
-        except Task.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk):
-        task = self.get_object(pk)
-        serializer = TaskSerializer(
-            task, context={'request': request})
-        return Response(serializer.data)
-
-    def put(self, request, pk):
-        task = self.get_object(pk)
-        serializer = TaskSerializer(
-            task, data=request.data, context={'request': request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+    serializer_class = TaskSerializer
+    queryset = Task.objects.all()
