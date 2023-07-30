@@ -5,10 +5,7 @@ from categories.models import Category
 
 
 class Task(models.Model):
-    """
-    Task model containing user created categories and pre-defined states and priority settings
-    """
-
+    """ Task model to later contain comments and categories """
     STATE_CHOICES = [
         ('NEW', 'New'),
         ('WIP', 'Work in Progress'),
@@ -22,7 +19,6 @@ class Task(models.Model):
         ('HI', 'High'),
         ('CR', 'Critical'),
     ]
-
     owner = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default=1)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -36,9 +32,11 @@ class Task(models.Model):
     coowner = models.ManyToManyField(User, related_name='task_coowner', blank=True)
 
     class Meta:
+        """ Sorting rule for tasks """
         ordering = ['-created_at']
 
     def __str__(self):
+        """ Returns task title/body, accomodates missing category """
         task_cat = self.category if self.category else "No Category"
         task_title = self.title if self.title else self.body
         return f'({task_cat}): {task_title}'

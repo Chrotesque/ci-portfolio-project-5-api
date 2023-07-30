@@ -3,6 +3,7 @@ from .models import Task
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    """ Serializer for Task model """
     category_name = serializers.ReadOnlyField(source='category.name')
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
@@ -14,10 +15,12 @@ class TaskSerializer(serializers.ModelSerializer):
     bool_title_body = False
 
     def get_is_owner(self, obj):
+        """ Compares requesting user with obj owner, returns bool """
         request = self.context['request']
         return request.user == obj.owner
 
     def get_is_coowner(self, obj):
+        """ Compares requesting user with obj co-owners, returns bool """
         request = self.context['request']
 
         # no access by default
@@ -36,15 +39,14 @@ class TaskSerializer(serializers.ModelSerializer):
 
         return access
 
-
-    # Part of validation to make sure either title or body are filled in
     def validate_title(self, value):
+        """ Checks self.title for being empty """
         if value:
             self.bool_title_body = True
         return value
 
-    # Throws error when boyth title and body are not filled in
     def validate_body(self, value):
+        """ Checks bool var and self.body to validate neither title or body are empty """ 
         if not value and not self.bool_title_body:
             raise serializers.ValidationError(
                 'Either Title or Body are required.'
@@ -52,6 +54,7 @@ class TaskSerializer(serializers.ModelSerializer):
         return value
 
     class Meta:
+        """ Field listing for task serializer """
         model = Task
         fields = [
             'id', 'owner', 'profile_id', 'profile_image', 'created_at',
