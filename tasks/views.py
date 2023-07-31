@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Task
 from .serializers import TaskSerializer
 from cip5_api.permissions import IsCoOwnerOrReadOnly
@@ -10,12 +11,16 @@ class TaskList(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     filter_backends = [
         filters.OrderingFilter,
-        filters.SearchFilter
+        filters.SearchFilter,
+        DjangoFilterBackend,
     ]
     search_fields = [
         'title',
         'body',
         'owner__username'
+    ]
+    filterset_fields = [
+        'owner__profile',
     ]
     ordering_fields = [
         'title',
