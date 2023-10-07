@@ -1,6 +1,7 @@
 from rest_framework import generics, permissions, filters
 from cip5_api.permissions import IsOwnerOrReadOnly
 from .models import Comment
+from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import CommentSerializer, CommentDetailSerializer
 
 
@@ -10,7 +11,8 @@ class CommentList(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
     filter_backends = [
         filters.OrderingFilter,
-        filters.SearchFilter
+        filters.SearchFilter,
+        DjangoFilterBackend
     ]
     filterset_fields = ['task']
     search_fields = [
