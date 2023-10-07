@@ -12,6 +12,7 @@ class CommentList(generics.ListCreateAPIView):
         filters.OrderingFilter,
         filters.SearchFilter
     ]
+    filterset_fields = ['task']
     search_fields = [
         'task__title',
         'task__body',
