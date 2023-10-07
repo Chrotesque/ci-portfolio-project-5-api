@@ -6,7 +6,9 @@ from .serializers import CategorySerializer
 
 
 class CategoryList(generics.ListCreateAPIView):
-    """ Lists categaories and allowes creating them if authenticated (CR) """
+    """
+    Lists categaories and allowes creating them if authenticated (CR)
+    """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = CategorySerializer
     filter_backends = [
@@ -31,7 +33,9 @@ class CategoryList(generics.ListCreateAPIView):
 
 
 class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
-    """ Detail view of a category allowing authenticated users to modify (RUD) """
+    """
+    Detail view of a category allowing authenticated users to modify (RUD)
+    """
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Category.objects.all()

@@ -34,7 +34,7 @@ REST_FRAMEWORK = {
         else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
     )],
     'DEFAULT_PAGINATION_CLASS':
-'rest_framework.pagination.PageNumberPagination',
+    'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 1000,
     'DATETIME_FORMAT': '%d %b %Y %H:%M',
 }
@@ -66,7 +66,7 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = [
    'localhost',
    '8000-chrotesque-ciportfoliop-1azc4zoc5zd.ws-eu105.gitpod.io',
-    os.environ.get('ALLOWED_HOST'),
+   os.environ.get('ALLOWED_HOST'),
 ]
 
 if 'CLIENT_ORIGIN' in os.environ:
@@ -163,16 +163,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'NumericPasswordValidator',
     },
 ]
 

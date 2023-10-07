@@ -46,7 +46,10 @@ class TaskSerializer(serializers.ModelSerializer):
         return value
 
     def validate_body(self, value):
-        """ Checks bool var and self.body to validate neither title or body are empty """ 
+        """
+        Checks bool var and self.body to validate neither
+        title or body are empty
+        """
         if not value and not self.bool_title_body:
             raise serializers.ValidationError(
                 'Either Title or Body are required.'
@@ -58,6 +61,7 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = [
             'id', 'owner', 'profile_id', 'profile_image', 'created_at',
-            'updated_at', 'due_date', 'category', 'category_name', 'state', 'priority', 'title',
-            'body', 'overdue', 'coowner', 'is_owner', 'is_coowner'
+            'updated_at', 'due_date', 'category', 'category_name', 'state',
+            'priority', 'title', 'body', 'overdue', 'coowner', 'is_owner',
+            'is_coowner'
         ]

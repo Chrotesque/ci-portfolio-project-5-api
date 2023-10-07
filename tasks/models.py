@@ -20,16 +20,21 @@ class Task(models.Model):
         ('CR', 'Critical'),
     ]
     owner = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default=1)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL,
+                                 null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    due_date = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
-    state = models.CharField(max_length=3, choices=STATE_CHOICES, default='NEW')
-    priority = models.CharField(max_length=2, choices=PRIORITY_CHOICES, default='LO')
+    due_date = models.DateTimeField(auto_now=False, auto_now_add=False,
+                                    null=True, blank=True)
+    state = models.CharField(max_length=3, choices=STATE_CHOICES,
+                             default='NEW')
+    priority = models.CharField(max_length=2, choices=PRIORITY_CHOICES,
+                                default='LO')
     title = models.CharField(max_length=255, blank=True)
     body = models.TextField(blank=True)
     overdue = models.BooleanField(default=False)
-    coowner = models.ManyToManyField(User, related_name='task_coowner', blank=True)
+    coowner = models.ManyToManyField(User, related_name='task_coowner',
+                                     blank=True)
 
     class Meta:
         """ Sorting rule for tasks """

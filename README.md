@@ -4,7 +4,6 @@
 
 # Table of Contents
 
-0. [WIP](#wip-)
 1. [Overview](#overview-)
 1. [UX](#ux-)
 1. [Model/Agile](#modelagile-)
@@ -13,19 +12,6 @@
 1. [Testing](#validation-and-testing-)
 1. [Deployment](#deployment-)
 1. [Credits](#credits-)
-
-<br />
-
-# **WIP** ([^](#table-of-contents))
-### As this project is still a work in progress, certain features are incomplete:
-- filtering is enabled for tasks but not fully implemented, point was to see if it works and later implement it further once usefulness has been evaluated
-- the models might require some additional work (changes) to work with the project as required, as currently all information is visible to all users, the goal will be that tasks are user specific (including co-owners)
-  - the focus is currently on the front-end and this will be revisited later
-- there's an issue with static files which is why the API isn't rendered correctly once deployed, a solution is still waiting to be found 
-- autommated testing missing
-- syntax / style checking quite possibly incomplete, focus was on this during development but certain style errors might have slipped my attention
-- whatever else unforeseen issue exists
-- this readme is incomplete as a result of the aforementioned
 
 <br />
 
@@ -127,6 +113,12 @@ This API handles data for the Project [Schedulize](https://github.com/Chrotesque
 ## Ordering & Searching
 - information of all models can be ordered and searched within
 
+## Missing features or not fully implemented yet
+### The following were not finished due to time constraints
+- filtering is enabled for tasks but not fully implemented, point was to see if it works and later implement it further once usefulness has been evaluated
+- the models might require some additional work (changes) to work with the project as required, as currently all information is visible to all users, the goal will be that tasks are user specific (including co-owners), this was circumvented on the frontend by simply showing no contents to users that are not logged in and showing only users own content once logged in
+- models exist that are not used currently on the frontend
+
 <br />
 
 # **Technologies Used** ([^](#table-of-contents))
@@ -158,7 +150,26 @@ This API handles data for the Project [Schedulize](https://github.com/Chrotesque
 
 # **Testing** ([^](#table-of-contents))
 
-- TBD
+## Unit Testing
+A total of 7 tests were created to test the main model of the project, the task model. Not all models are being tested due to time constraints, this should showcase a general understanding of testing though.
+
+The 7 tests in total tests if a user:
+- can see a list of all tasks
+- who is logged in can create tasks
+- who is not logged in can create tasks
+- can retrieve task details with valid id
+- cannot retrieve task details with invalid id
+- can update their own task
+- cannot update somebody elses task
+
+Result: 
+
+![Testing Results](readme/images/testing.png) 
+
+## PEP8 Linting
+I used <a href="https://pep8ci.herokuapp.com/">CI Python Linter</a> for validation. Checked all python files that I touched during development. 
+
+Results: All clear, no errors found
 
 <br />
 
