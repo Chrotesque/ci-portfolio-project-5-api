@@ -21,6 +21,9 @@ class TaskList(generics.ListCreateAPIView):
     ]
     filterset_fields = [
         'owner__profile',
+        'state',
+        'priority',
+        'due_date'
     ]
     ordering_fields = [
         'title',
