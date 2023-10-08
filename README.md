@@ -1,12 +1,12 @@
 <h1 align="center"><a name="top">Code Institute P5 API for Schedulize Project (P5)</a></h1>
 
-[View the live api here](https://chrotesque-cip5-api-7fc69c3bebb4.herokuapp.com/) and [view the live project here](https://chrotesque-cip5-04d27b18c413.herokuapp.com/)
+<a href="https://chrotesque-cip5-api-7fc69c3bebb4.herokuapp.com/" target="_blank">View the live api here</a> and <a href="https://chrotesque-cip5-04d27b18c413.herokuapp.com/" target="_blank">view the live project here</a>
 
 # Table of Contents
 
 1. [Overview](#overview-)
 1. [UX](#ux-)
-1. [Model/Agile](#modelagile-)
+1. [Model](#model-)
 1. [Features](#features-)
 1. [Technologies Used](#technologies-used-)
 1. [Testing](#validation-and-testing-)
@@ -16,7 +16,7 @@
 <br />
 
 # **Overview** ([^](#table-of-contents))
-This API handles data for the Project [Schedulize](https://github.com/Chrotesque/ci-portfolio-project-5), providing authentication, tasks, categories, comments as well as user profiles to the front-end of Schedulize.
+This API handles data for the Project <a href="https://github.com/Chrotesque/ci-portfolio-project-5" target="_blank">Schedulize</a>, providing authentication, tasks, categories, comments as well as user profiles to the front-end of Schedulize.
 
 <br />
 
@@ -167,7 +167,7 @@ Result:
 ![Testing Results](readme/images/testing.png) 
 
 ## PEP8 Linting
-I used <a href="https://pep8ci.herokuapp.com/">CI Python Linter</a> for validation. Checked all python files that I touched during development. 
+I used <a href="https://pep8ci.herokuapp.com/" target="_blank">CI Python Linter</a> for validation. Checked all python files that I touched during development. 
 
 Results: All clear, no errors found
 
