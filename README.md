@@ -279,3 +279,4 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 # **Credits** ([^](#table-of-contents))
 
 - [Sample Readme Template](https://github.com/Code-Institute-Solutions/SampleREADME/blob/master/README.md) used at least partially from Code Institute
+- Based off of the Walkthrough Project Django Rest Framework and a fair amount of the code is similar and in parts identical, changes were made were necessary & appropriate
