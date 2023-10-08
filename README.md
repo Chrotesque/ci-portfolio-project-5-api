@@ -9,7 +9,7 @@
 1. [Model](#model-)
 1. [Features](#features-)
 1. [Technologies Used](#technologies-used-)
-1. [Testing](#validation-and-testing-)
+1. [Testing](#testing-)
 1. [Deployment](#deployment-)
 1. [Credits](#credits-)
 
